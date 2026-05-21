@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  background: #e5e7eb;
+  font-family: sans-serif;
+}
+
+h2 
+{
+  text-align: center;
+}
+.page {
+  max-width: 1200px;
+  margin: 30px auto;
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+  padding: 12px 10px;
+  border-radius: 16px;
+     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  background: #cfe2f3;
+  padding: 6px;
+  border-radius: 999px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.nav-links .active {
+  background: #16425B;
+  color: white;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-right input {
+  border: none;
+  background: #cfe2f3;
+  padding: 8px 12px;
+  border-radius: 999px;
+  outline: none;
+}
+
+
+/* PAGE BACKGROUND */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #e5e7eb;
+}
+
+/* CONTAINER FOR ALL CARDS */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 30px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto; /* center it nicely */
+}
+
+/* INDIVIDUAL CARD */
+.card {
+  width: 100%; /* let grid control size */
+  border-radius: 18px;
+  overflow: hidden;
+  background: white;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* IMAGE */
+.card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* TEXT */
+.card p {
+  text-align: center;
+  padding: 10px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* HOVER EFFECT (✨ main character moment ✨) */
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
