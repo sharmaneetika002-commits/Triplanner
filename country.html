@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planner </title>
+  <link rel="stylesheet" href="../css/countrystylesheet.css">
+
+</head>
+<body>
+<div class="page">
+  <nav class="navbar">
+    <div class="logo">TRIPLANNER</div>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="country.html" class="active">Planner</a>
+      <a href="itinerary.html">Itinerary</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="Budget.html">Budget</a>
+    </div>
+    <div class="nav-right">
+      <input type="text" placeholder="Search" />
+      <span>🔔</span><span>👤</span>
+    </div>
+  </nav>
+ 
+  <a class="back-btn" href="index.html">← Back to Dashboard</a>
+ 
+  <div class="country-hero">
+    <img id="heroImg" src="" alt="">
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <h1 id="heroTitle"></h1>
+        <p id="heroSubtitle"></p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- <!-- <div class="meta-strip">
+    <div class="meta-card">
+      <label>📅 Travel Date</label>
+      <input type="date" id="travelDate">
+    </div>
+    <div class="meta-card">
+      <label>👥 Travellers</label>
+      <input type="number" id="travellers" min="1" max="20" value="2">
+    </div>
+    <!-- <div class="meta-card">
+      <label>💰 Budget (₹)</label>
+      <input type="number" id="budget" placeholder="e.g. 150000">
+    </div> -->
+    <!-- <div class="meta-card">
+      <label>🏨 Stay Type</label>
+      <select id="stayType">
+        <option>Hotel</option><option>Hostel</option><option>Airbnb</option><option>Resort</option>
+      </select>
+    </div> -->
+  <!-- </div> -->
+ 
+  <div class="section-title">🗺️ Things To Do <span style="font-size:13px;color:#888;font-weight:400;">— tick to add to itinerary</span></div>
+  <div class="activities-grid" id="activitiesGrid"></div>
+</div>
+
+ 
+
+<script src="../country.js"></script>
+</body>
+</html>
