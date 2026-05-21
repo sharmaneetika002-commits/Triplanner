@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Itinerary</title>
+    <link rel="stylesheet" href="../css/itinerary_stylesheet.css">
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="logo">TRIPLANNER</div>
+            <div class="nav-links">
+                <a href="index.html">Dashboard</a>
+                <a href="country.html">Planner</a>
+                <a href="itinerary.html" class="active">Itinerary</a>
+                <a href="bookings.html">Bookings</a>
+                <a href="Budget.html">Budget</a>
+            </div>
+            <div class="nav-right">
+                <input type="text" placeholder="Search" />
+                <span>🔔</span>
+                <span>👤</span>
+            </div>
+        </nav>
+
+
+        <div class="page-header">
+            <h2>My Itinerary 🗺️</h2>
+            <p>All your saved activities in one place</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-pill">
+                <span id="totalCount">0</span>
+                Activities Saved
+            </div>
+        </div>
+
+
+        <div class="top-actions" id="topActions" style="display:none;">
+            <button class="btn-clear" onclick="clearAll()">🗑️ Clear All</button>
+        </div>
+
+
+        <div id="itineraryContent"></div>
+
+    </div>
+
+    <script>
+        //this is creating an object of the countries 
+        const countryFlags = {
+            Japan: "🇯🇵",
+            Thailand: "🇹🇭",
+            "South Korea": "🇰🇷",
+            Greece: "🇬🇷",
+            France: "🇫🇷",
+            England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            Norway: "NR",
+            Switzerland: "SW",
+            China: "CH",
+        };
+
+
+        //creating a function to load and save all the activities 
+        function loadItinerary() {
+            const itinerary = JSON.parse(localStorage.getItem("itinerary") || "[]"); //this stores the countries in local storage under the key 'itinerary', we parsed it because local storage only uses strings
+            const content = document.getElementById("itineraryContent"); //finds stuff from itinerary content and stores it in content
+            const topActions = document.getElementById("topActions"); //same with this 
+
+            document.getElementById("totalCount").textContent = itinerary.length; //saves the number of activities in itinerary
+
+            //this block of code tells us that if the length is zero then no country is saved and it redirects us to homepage to browse
+            if (itinerary.length === 0) {
+                topActions.style.display = "none";
+                content.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">🧳</div>
+                <h3>No activities saved yet</h3>
+                <p>Go explore a country and tick things you want to do!</p>
+                <a href="index.html" class="btn-go">Browse Countries</a>
+            </div>`;
+                return;
+            }
+
+            topActions.style.display = "flex";
+
+            const grouped = {}; //creates an empty object
+            itinerary.forEach((item, index) => { //loops through each item in the object 
+                const country = item.country || "Other"; //sees which country it is
+                if (!grouped[country]) grouped[country] = []; //if the country already exists, add activities to that otherwise create a new array
+                grouped[country].push({ ...item, index }); //adds activities to the that country array 
+            });
+
+            //render it all, loops through every country using map and creates html content of it 
+            content.innerHTML = Object.entries(grouped).map(([country, activities]) => `  
+        <div class="country-section">
+            <div class="country-header">
+                <span class="country-flag-emoji">${countryFlags[country] || "🌍"}</span>
+                <span class="country-title">${country} Itinerary</span>
+                <!--for every activity create a card with this-->
+                <span class="country-count">${activities.length} activity${activities.length > 1 ? "s" : ""}</span> 
+            </div>
+            <div class="itinerary-grid">
+
+                ${activities.map(act => `
+                    <div class="itinerary-card" id="card-${act.index}">
+                        <div class="act-emoji">${act.emoji || "📍"}</div>
+                        <div class="act-info">
+                            <h4>${act.name}</h4>
+                            <p>${act.desc}</p>
+                            <span class="act-tag">${act.tag}</span>
+                        </div>
+                        <button class="btn-remove" onclick="removeItem(${act.index})" title="Remove">✕</button>
+                    </div>`).join("")}
+            </div>
+        </div>`).join("");
+        }
+        loadItinerary();
+    </script>
+</body>
+
+</html>
